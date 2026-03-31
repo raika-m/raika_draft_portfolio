@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Creative Director</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --shu:#E24D3B;
+  --yamabuki:#F5A623;
+  --fuji:#9B7FCC;
+  --matcha:#7BAE6E;
+  --azzurri:#2E78C7;
+  --cream:#FDF6EC;
+  --ink:#1A1A1A;
+  --sand:#F0E8D8;
+  --rose:#E8A0BF;
+  --gold:#C9A84C;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:'Cormorant Garamond',serif;
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+/* ═══════ FLOATING GRADIENT BG ═══════ */
+.gradient-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
+}
+.gradient-bg .blob{
+  position:absolute;border-radius:50%;filter:blur(120px);opacity:.18;
+  animation:float 20s ease-in-out infinite;
+}
+.blob-1{width:600px;height:600px;background:var(--shu);top:-10%;left:-10%;animation-delay:0s}
+.blob-2{width:500px;height:500px;background:var(--fuji);top:30%;right:-15%;animation-delay:-5s}
+.blob-3{width:450px;height:450px;background:var(--yamabuki);bottom:10%;left:20%;animation-delay:-10s}
+.blob-4{width:400px;height:400px;background:var(--azzurri);top:60%;left:50%;animation-delay:-15s}
+.blob-5{width:350px;height:350px;background:var(--matcha);top:10%;right:30%;animation-delay:-8s}
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(60px,-40px) scale(1.1)}
+  50%{transform:translate(-30px,60px) scale(.95)}
+  75%{transform:translate(40px,30px) scale(1.05)}
+}
+
+/* ═══════ NAVIGATION ═══════ */
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  padding:24px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  backdrop-filter:blur(12px);
+  background:rgba(253,246,236,.7);
+  border-bottom:1px solid rgba(26,26,26,.06);
+  transition:all .4s;
+}
+nav .logo{
+  font-family:'Shippori Mincho',serif;font-size:1.3rem;font-weight:800;
+  letter-spacing:.05em;
+}
+nav .logo span{color:var(--shu)}
+nav ul{list-style:none;display:flex;gap:32px}
+nav ul a{
+  text-decoration:none;color:var(--ink);font-size:.95rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  position:relative;transition:color .3s;
+}
+nav ul a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--shu);transition:width .3s;
+}
+nav ul a:hover{color:var(--shu)}
+nav ul a:hover::after{width:100%}
+
+/* ═══════ HERO ═══════ */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:120px 24px 80px;
+}
+.hero-eyebrow{
+  font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--fuji);
+  margin-bottom:24px;
+  opacity:0;animation:fadeUp .8s .3s forwards;
+}
+.hero h1{
+  font-family:'Shippori Mincho',serif;font-size:clamp(3rem,8vw,7rem);
+  font-weight:800;line-height:1.05;
+  margin-bottom:32px;
+  opacity:0;animation:fadeUp .8s .5s forwards;
+}
+.hero h1 .line-en{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  display:block;font-size:clamp(1.4rem,3.5vw,3rem);
+  color:var(--azzurri);margin-top:8px;
+}
+.hero-sub{
+  font-size:1.2rem;font-weight:300;line-height:1.8;max-width:600px;
+  margin-bottom:48px;
+  opacity:0;animation:fadeUp .8s .7s forwards;
+}
+
+/* ═══════ CITY JOURNEY ═══════ */
+.city-journey{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:56px;
+  opacity:0;animation:fadeUp .8s .9s forwards;
+}
+.city-card{
+  text-align:center;padding:24px 32px;position:relative;
+  cursor:default;transition:transform .4s;
+}
+.city-card:hover{transform:translateY(-8px)}
+.city-card .kanji{
+  font-family:'Shippori Mincho',serif;font-size:2.4rem;font-weight:800;
+  margin-bottom:4px;transition:color .3s;
+}
+.city-card .en-name{
+  font-family:'Playfair Display',serif;font-size:.85rem;
+  letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+  margin-bottom:4px;
+}
+.city-card .role-label{
+  font-family:'Cormorant Garamond',serif;font-size:.78rem;font-weight:300;
+  font-style:italic;color:rgba(26,26,26,.5);letter-spacing:.05em;
+}
+.city-card:nth-child(1) .kanji{color:var(--shu)}
+.city-card:nth-child(2) .kanji{color:var(--azzurri)}
+.city-card:nth-child(3) .kanji{color:var(--yamabuki)}
+
+.city-arrow{
+  font-size:1.6rem;color:rgba(26,26,26,.2);
+  margin:0 4px;
+  animation:arrowPulse 2s ease-in-out infinite;
+}
+.city-arrow:nth-child(4){animation-delay:.3s}
+@keyframes arrowPulse{
+  0%,100%{opacity:.3;transform:translateX(0)}
+  50%{opacity:.8;transform:translateX(4px)}
+}
+
+.hero-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:16px 40px;
+  border:2px solid var(--ink);border-radius:0;
+  text-decoration:none;color:var(--ink);
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  position:relative;overflow:hidden;transition:all .4s;
+  opacity:0;animation:fadeUp .8s 1.1s forwards;
+}
+.hero-cta::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:var(--ink);transition:left .4s;z-index:-1;
+}
+.hero-cta:hover{color:var(--cream)}
+.hero-cta:hover::before{left:0}
+
+/* ═══════ SECTIONS SHARED ═══════ */
+section{position:relative;z-index:1;padding:120px 48px}
+.section-label{
+  font-family:'Shippori Mincho',serif;font-size:1rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--fuji);
+  margin-bottom:12px;
+}
+.section-title{
+  font-family:'Shippori Mincho',serif;font-size:clamp(2.2rem,5vw,4rem);
+  font-weight:800;line-height:1.15;margin-bottom:16px;
+}
+.section-title .sub{
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
+  display:block;font-size:clamp(1.2rem,2.5vw,2rem);color:var(--azzurri);
+}
+
+/* ═══════ TIMELINE ═══════ */
+.timeline-section{background:var(--ink);color:var(--cream);overflow:hidden}
+.timeline-section .section-label{color:var(--yamabuki)}
+.timeline-section .section-title .sub{color:var(--rose)}
+
+.timeline{
+  max-width:900px;margin:60px auto 0;position:relative;
+  padding-left:60px;
+}
+.timeline::before{
+  content:'';position:absolute;left:24px;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--shu),var(--yamabuki),var(--fuji),var(--matcha),var(--azzurri));
+}
+
+.tl-item{
+  position:relative;padding:0 0 64px 0;
+  opacity:0;transform:translateY(40px);
+  transition:all .7s cubic-bezier(.23,1,.32,1);
+}
+.tl-item.visible{opacity:1;transform:translateY(0)}
+.tl-item::before{
+  content:'';position:absolute;left:-44px;top:6px;
+  width:14px;height:14px;border-radius:50%;
+  border:3px solid var(--cream);
+  transition:all .4s;
+}
+.tl-item:nth-child(1)::before{background:var(--shu)}
+.tl-item:nth-child(2)::before{background:var(--shu)}
+.tl-item:nth-child(3)::before{background:var(--azzurri)}
+.tl-item:nth-child(4)::before{background:var(--azzurri)}
+.tl-item:nth-child(5)::before{background:var(--yamabuki)}
+.tl-item:nth-child(6)::before{background:var(--yamabuki)}
+
+.tl-item:hover::before{transform:scale(1.5)}
+
+.tl-year{
+  font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.tl-item:nth-child(1) .tl-year,.tl-item:nth-child(2) .tl-year{color:var(--shu)}
+.tl-item:nth-child(3) .tl-year,.tl-item:nth-child(4) .tl-year{color:var(--azzurri)}
+.tl-item:nth-child(5) .tl-year,.tl-item:nth-child(6) .tl-year{color:var(--yamabuki)}
+
+.tl-title{
+  font-family:'Shippori Mincho',serif;font-size:1.6rem;font-weight:800;
+  margin-bottom:8px;line-height:1.3;
+}
+.tl-desc{
+  font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:300;
+  line-height:1.7;opacity:.75;max-width:600px;
+}
+.tl-tag{
+  display:inline-block;margin-top:12px;
+  padding:4px 14px;border-radius:20px;
+  font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  font-family:'Cormorant Garamond',serif;
+}
+.tag-tokyo{background:rgba(226,77,59,.2);color:var(--shu)}
+.tag-london{background:rgba(46,120,199,.2);color:var(--azzurri)}
+.tag-dubai{background:rgba(245,166,35,.2);color:var(--yamabuki)}
+
+/* ═══════ PROJECTS ═══════ */
+.projects-section{overflow:hidden}
+.projects-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  gap:32px;max-width:1200px;margin:60px auto 0;
+}
+.project-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  aspect-ratio:4/3;cursor:pointer;
+  transition:transform .5s cubic-bezier(.23,1,.32,1);
+}
+.project-card:hover{transform:scale(1.03)}
+.project-card .card-bg{
+  position:absolute;inset:0;transition:transform .6s;
+}
+.project-card:hover .card-bg{transform:scale(1.08)}
+.project-card .card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,26,26,.85) 0%,transparent 60%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:32px;transition:all .4s;
+}
+.project-card:hover .card-overlay{background:linear-gradient(to top,rgba(26,26,26,.95) 0%,rgba(26,26,26,.3) 60%)}
+.project-card .card-cat{
+  font-family:'Cormorant Garamond',serif;font-size:.8rem;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--yamabuki);margin-bottom:8px;
+}
+.project-card .card-title{
+  font-family:'Shippori Mincho',serif;font-size:1.6rem;font-weight:800;
+  color:#fff;line-height:1.2;margin-bottom:8px;
+}
+.project-card .card-desc{
+  font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:300;
+  color:rgba(255,255,255,.7);line-height:1.5;
+  max-height:0;overflow:hidden;transition:max-height .5s;
+}
+.project-card:hover .card-desc{max-height:100px}
+
+.card-bg-1{background:linear-gradient(135deg,var(--yamabuki),var(--shu))}
+.card-bg-2{background:linear-gradient(135deg,var(--azzurri),var(--fuji))}
+.card-bg-3{background:linear-gradient(135deg,var(--matcha),var(--azzurri))}
+.card-bg-4{background:linear-gradient(135deg,var(--fuji),var(--rose))}
+
+/* geometric decoration inside cards */
+.card-deco{
+  position:absolute;opacity:.12;
+}
+.card-deco-circle{
+  width:200px;height:200px;border:3px solid #fff;border-radius:50%;
+  top:-40px;right:-40px;
+}
+.card-deco-line{
+  width:140%;height:1px;background:#fff;
+  transform:rotate(-30deg);top:40%;left:-20%;
+}
+
+/* ═══════ AWARDS ═══════ */
+.awards-section{
+  background:linear-gradient(135deg,var(--ink) 0%,#2A1E3A 100%);
+  color:var(--cream);text-align:center;
+}
+.awards-section .section-label{color:var(--gold)}
+.awards-section .section-title .sub{color:var(--fuji)}
+.awards-note{
+  max-width:700px;margin:40px auto 0;
+  font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;
+  line-height:1.8;opacity:.8;
+}
+.award-targets{
+  display:flex;justify-content:center;gap:40px;margin-top:48px;flex-wrap:wrap;
+}
+.award-item{
+  padding:24px 32px;
+  border:1px solid rgba(255,255,255,.12);border-radius:12px;
+  backdrop-filter:blur(8px);background:rgba(255,255,255,.03);
+  transition:all .4s;cursor:default;min-width:160px;
+}
+.award-item:hover{
+  border-color:var(--gold);transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(201,168,76,.15);
+}
+.award-item .award-icon{font-size:2rem;margin-bottom:12px}
+.award-item .award-name{
+  font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
+  letter-spacing:.05em;
+}
+.award-item .award-status{
+  font-family:'Cormorant Garamond',serif;font-size:.8rem;font-weight:300;
+  font-style:italic;margin-top:6px;opacity:.5;
+}
+
+/* ═══════ ABOUT / CREATIVE DIRECTION ═══════ */
+.about-section{overflow:hidden}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  max-width:1100px;margin:60px auto 0;align-items:start;
+}
+.about-text{
+  font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;
+  line-height:1.85;
+}
+.about-text p+p{margin-top:20px}
+.about-text strong{font-weight:700;color:var(--shu)}
+.about-highlight{
+  padding:40px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(226,77,59,.06),rgba(155,127,204,.06));
+  border:1px solid rgba(26,26,26,.06);
+}
+.about-highlight h3{
+  font-family:'Shippori Mincho',serif;font-size:1.4rem;font-weight:800;
+  margin-bottom:20px;
+}
+.skill-tag{
+  display:inline-block;margin:4px;padding:6px 16px;
+  border-radius:20px;font-size:.82rem;font-weight:600;
+  letter-spacing:.05em;font-family:'Cormorant Garamond',serif;
+  transition:all .3s;cursor:default;
+}
+.skill-tag:hover{transform:scale(1.08)}
+.st-1{background:rgba(226,77,59,.1);color:var(--shu)}
+.st-2{background:rgba(46,120,199,.1);color:var(--azzurri)}
+.st-3{background:rgba(155,127,204,.1);color:var(--fuji)}
+.st-4{background:rgba(123,174,110,.1);color:var(--matcha)}
+.st-5{background:rgba(245,166,35,.1);color:var(--yamabuki)}
+
+/* ═══════ CONTACT ═══════ */
+.contact-section{
+  text-align:center;
+  background:var(--ink);color:var(--cream);
+  padding:100px 48px;
+}
+.contact-section .section-title{color:var(--cream)}
+.contact-section .section-title .sub{color:var(--yamabuki)}
+.contact-links{
+  display:flex;justify-content:center;gap:24px;margin-top:40px;flex-wrap:wrap;
+}
+.contact-link{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;
+  border:1px solid rgba(255,255,255,.2);border-radius:40px;
+  text-decoration:none;color:var(--cream);
+  font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  transition:all .4s;
+}
+.contact-link:hover{
+  background:var(--cream);color:var(--ink);border-color:var(--cream);
+}
+
+/* ═══════ FOOTER ═══════ */
+footer{
+  text-align:center;padding:32px;
+  background:var(--ink);color:rgba(253,246,236,.3);
+  font-family:'Cormorant Garamond',serif;font-size:.85rem;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+/* ═══════ ANIMATIONS ═══════ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.scroll-reveal{
+  opacity:0;transform:translateY(40px);
+  transition:all .8s cubic-bezier(.23,1,.32,1);
+}
+.scroll-reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════ RESPONSIVE ═══════ */
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  nav ul{gap:16px}
+  nav ul a{font-size:.75rem}
+  section{padding:80px 20px}
+  .city-journey{flex-direction:column;gap:0}
+  .city-arrow{transform:rotate(90deg)}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .projects-grid{grid-template-columns:1fr}
+  .award-targets{gap:16px}
+  .timeline{padding-left:48px}
+  .timeline::before{left:16px}
+  .tl-item::before{left:-40px}
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING GRADIENT BACKGROUND -->
+<div class="gradient-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+  <div class="blob blob-5"></div>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">創<span>造</span></div>
+  <ul>
+    <li><a href="#journey">旅路</a></li>
+    <li><a href="#projects">Works</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Creative Director &amp; Designer</div>
+  <h1>
+    感性を、世界へ。
+    <span class="line-en">Bridging Cultures Through Design</span>
+  </h1>
+  <p class="hero-sub">
+    東京で生まれた美意識を、ロンドンで磨き、ドバイで花開かせる。<br>
+    三都市の感性が交差するクリエイティブ・ディレクション。
+  </p>
+
+  <!-- 3 CITY JOURNEY -->
+  <div class="city-journey">
+    <div class="city-card">
+      <div class="kanji">東京</div>
+      <div class="en-name">Tokyo</div>
+      <div class="role-label">Born &amp; Raised</div>
+    </div>
+    <div class="city-arrow">→</div>
+    <div class="city-card">
+      <div class="kanji">倫敦</div>
+      <div class="en-name">London</div>
+      <div class="role-label">Trained &amp; Directed</div>
+    </div>
+    <div class="city-arrow">→</div>
+    <div class="city-card">
+      <div class="kanji">迪拜</div>
+      <div class="en-name">Dubai</div>
+      <div class="role-label">Creating Now</div>
+    </div>
+  </div>
+
+  <a href="#projects" class="hero-cta">View Works →</a>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="journey">
+  <div class="section-label">旅路</div>
+  <div class="section-title">
+    The Journey So Far
+    <span class="sub">三都市を巡るクリエイティブの軌跡</span>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">Tokyo — Origin</div>
+      <div class="tl-title">東京で育まれた美意識</div>
+      <div class="tl-desc">日本で生まれ、余白の美学・素材への敬意・繊細なディテールへのこだわりを自然と吸収。東京のストリートカルチャーとミニマリズムの共存が、クリエイティブの原点に。</div>
+      <span class="tl-tag tag-tokyo">Tokyo</span>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">Tokyo — Foundations</div>
+      <div class="tl-title">デザインの基礎を学ぶ</div>
+      <div class="tl-desc">グラフィックデザインとビジュアルコミュニケーションを学び、日本的な感性をベースにしたクリエイティブ思考を確立。</div>
+      <span class="tl-tag tag-tokyo">Tokyo</span>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">London — Growth</div>
+      <div class="tl-title">Creative Director, Menswear Underwear Brand</div>
+      <div class="tl-desc">ロンドンにてメンズアンダーウェアブランドのクリエイティブ・ディレクターを務める。ブランドの世界観構築からビジュアル戦略、撮影ディレクションまでを統括。英国のクラフトマンシップと大胆な表現力を融合させた経験が、ディレクション力を磨いた。</div>
+      <span class="tl-tag tag-london">London</span>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">London — Mastery</div>
+      <div class="tl-title">多文化環境でのブランディング</div>
+      <div class="tl-desc">多国籍チームとの協業を通じ、カルチャーを横断するブランド・コミュニケーションの手法を習得。デザインの力で言語の壁を超える体験を重ねる。</div>
+      <span class="tl-tag tag-london">London</span>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">Dubai — Now</div>
+      <div class="tl-title">砂漠から世界へ、新たな創造</div>
+      <div class="tl-desc">中東・アジア・欧州が交差するドバイを拠点に、グローバルなクリエイティブ・ディレクションを展開中。多文化×テクノロジー×デザインの交点で、これまでにない表現を追求。</div>
+      <span class="tl-tag tag-dubai">Dubai</span>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">Dubai — Future</div>
+      <div class="tl-title">次のステージへ</div>
+      <div class="tl-desc">東京の繊細さ、ロンドンの大胆さ、ドバイのスケール感。三都市で培った感性を武器に、世界を舞台にしたクリエイティブの新章を切り拓く。</div>
+      <span class="tl-tag tag-dubai">Dubai</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-label">作品</div>
+  <div class="section-title">
+    Selected Works
+    <span class="sub">プロジェクトセレクション</span>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card scroll-reveal">
+      <div class="card-bg card-bg-1">
+        <div class="card-deco card-deco-circle"></div>
+      </div>
+      <div class="card-overlay">
+        <div class="card-cat">Brand Identity</div>
+        <div class="card-title">Oasis App</div>
+        <div class="card-desc">砂漠の都市に息づくウェルネス体験をデジタルで再構築。アラビックモダンなUI/UXデザイン。</div>
+      </div>
+    </div>
+
+    <div class="project-card scroll-reveal">
+      <div class="card-bg card-bg-2">
+        <div class="card-deco card-deco-line"></div>
+      </div>
+      <div class="card-overlay">
+        <div class="card-cat">Creative Direction</div>
+        <div class="card-title">Desert Bloom</div>
+        <div class="card-desc">ドバイの砂漠から着想を得たラグジュアリーコスメブランドのビジュアルアイデンティティ。</div>
+      </div>
+    </div>
+
+    <div class="project-card scroll-reveal">
+      <div class="card-bg card-bg-3">
+        <div class="card-deco card-deco-circle"></div>
+      </div>
+      <div class="card-overlay">
+        <div class="card-cat">Digital Experience</div>
+        <div class="card-title">Mirage Gallery</div>
+        <div class="card-desc">アート×テクノロジーの没入型デジタルギャラリー体験。東洋と西洋の美意識が溶け合う空間。</div>
+      </div>
+    </div>
+
+    <div class="project-card scroll-reveal">
+      <div class="card-bg card-bg-4">
+        <div class="card-deco card-deco-line"></div>
+      </div>
+      <div class="card-overlay">
+        <div class="card-cat">Brand Strategy</div>
+        <div class="card-title">Souq Modern</div>
+        <div class="card-desc">伝統的なスーク文化をモダンに再解釈。EC+リアル店舗の統合ブランド体験設計。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards-section" id="awards">
+  <div class="section-label">受賞歴</div>
+  <div class="section-title">
+    Awards & Recognition
+    <span class="sub">挑戦と目標</span>
+  </div>
+  <p class="awards-note">
+    現在、Behance・Dribbbleでの作品公開を積極的に進めながら、<br>
+    国際的なデザインアワードへの挑戦を準備中です。
+  </p>
+  <div class="award-targets">
+    <div class="award-item">
+      <div class="award-icon">🏆</div>
+      <div class="award-name">Awwwards</div>
+      <div class="award-status">Targeting 2026</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">✦</div>
+      <div class="award-name">CSS Design Awards</div>
+      <div class="award-status">Targeting 2026</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🎨</div>
+      <div class="award-name">D&AD</div>
+      <div class="award-status">Future Goal</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">◆</div>
+      <div class="award-name">Behance</div>
+      <div class="award-status">Portfolio Active</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">◉</div>
+      <div class="award-name">Dribbble</div>
+      <div class="award-status">Portfolio Active</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-label">人物</div>
+  <div class="section-title">
+    About
+    <span class="sub">クリエイターとしての姿</span>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        東京で生まれ育ち、日本の美意識 — <strong>余白・間・素材感</strong>への感性を持ってロンドンへ渡る。
+      </p>
+      <p>
+        ロンドンでは<strong>メンズアンダーウェアブランドのCreative Director</strong>として、ブランドの世界観を一から構築。撮影ディレクション、ビジュアル戦略、パッケージデザインまでをトータルにディレクション。英国の伝統と前衛が共存する環境で、ブランディングの本質を学ぶ。
+      </p>
+      <p>
+        現在はドバイを拠点に、<strong>東洋×西洋×中東</strong>の文化的交差点から、グローバルなクリエイティブ・ディレクションを展開。デザインの力で文化と言語の壁を越え、人の感性に直接響く体験を創出しています。
+      </p>
+    </div>
+    <div class="about-highlight">
+      <h3>Expertise</h3>
+      <div>
+        <span class="skill-tag st-1">Creative Direction</span>
+        <span class="skill-tag st-2">Brand Identity</span>
+        <span class="skill-tag st-3">Visual Strategy</span>
+        <span class="skill-tag st-4">UI/UX Design</span>
+        <span class="skill-tag st-5">Art Direction</span>
+        <span class="skill-tag st-1">Photography Direction</span>
+        <span class="skill-tag st-2">Packaging Design</span>
+        <span class="skill-tag st-3">Digital Experience</span>
+        <span class="skill-tag st-4">Cross-Cultural Branding</span>
+        <span class="skill-tag st-5">Campaign Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">連絡</div>
+  <div class="section-title">
+    Let's Create Together
+    <span class="sub">一緒に創りましょう</span>
+  </div>
+  <div class="contact-links">
+    <a href="#" class="contact-link">Behance</a>
+    <a href="#" class="contact-link">Dribbble</a>
+    <a href="#" class="contact-link">Instagram</a>
+    <a href="#" class="contact-link">Email</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 — Designed with 感性 in Dubai</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.scroll-reveal, .tl-item').forEach(el => observer.observe(el));
+
+// Nav shrink on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 80) {
+    nav.style.padding = '14px 48px';
+    nav.style.background = 'rgba(253,246,236,.92)';
+  } else {
+    nav.style.padding = '24px 48px';
+    nav.style.background = 'rgba(253,246,236,.7)';
+  }
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
